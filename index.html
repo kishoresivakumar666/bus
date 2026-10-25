@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VoyageBus - Modern Bus Reservation System</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Google Font: Inter for clean typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-logo" id="logoBtn">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="15" rx="3"></rect>
+            <path d="M3 10h18"></path>
+            <circle cx="7" cy="15" r="1.5" fill="currentColor"></circle>
+            <circle cx="17" cy="15" r="1.5" fill="currentColor"></circle>
+            <path d="M5 19v2M19 19v2"></path>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-primary">Voyage</span><span class="logo-accent">Bus</span>
+          <span class="logo-tag">Intercity Express</span>
+        </div>
+      </div>
+
+      <nav class="header-nav">
+        <button class="nav-link active" id="navHomeBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span>Book Tickets</span>
+        </button>
+        <button class="nav-link" id="navBookingsBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          <span>My Bookings</span>
+          <span class="bookings-badge" id="bookingsCountBadge">1</span>
+        </button>
+        <button class="nav-link" id="navSafetyBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          <span>Safety</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Booking Stepper Progress Indicator -->
+  <section class="stepper-section" id="stepperSection">
+    <div class="stepper-container">
+      <div class="stepper-track">
+        <div class="step-item active" data-step="1">
+          <div class="step-circle">
+            <span class="step-number">1</span>
+            <svg class="step-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <span class="step-label">Search Route</span>
+        </div>
+
+        <div class="step-line" id="line1-2"></div>
+
+        <div class="step-item" data-step="2">
+          <div class="step-circle">
+            <span class="step-number">2</span>
+            <svg class="step-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <span class="step-label">Select Bus</span>
+        </div>
+
+        <div class="step-line" id="line2-3"></div>
+
+        <div class="step-item" data-step="3">
+          <div class="step-circle">
+            <span class="step-number">3</span>
+            <svg class="step-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <span class="step-label">Choose Seats</span>
+        </div>
+
+        <div class="step-line" id="line3-4"></div>
+
+        <div class="step-item" data-step="4">
+          <div class="step-circle">
+            <span class="step-number">4</span>
+            <svg class="step-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <span class="step-label">Passenger Info</span>
+        </div>
+
+        <div class="step-line" id="line4-5"></div>
+
+        <div class="step-item" data-step="5">
+          <div class="step-circle">
+            <span class="step-number">5</span>
+            <svg class="step-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <span class="step-label">Review & Confirm</span>
+        </div>
+
+        <div class="step-line" id="line5-6"></div>
+
+        <div class="step-item" data-step="6">
+          <div class="step-circle">
+            <span class="step-number">6</span>
+            <svg class="step-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <span class="step-label">Ticket Confirmed</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Application Wrapper -->
+  <main class="main-wrapper">
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- ========================================== -->
+    <!-- STEP 1: HERO & SEARCH SECTION              -->
+    <!-- ========================================== -->
+    <section class="step-view active" id="viewStep1">
+      <div class="hero-banner">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="pulse-dot"></span> Smart Intercity Travel across Tamil Nadu
+          </div>
+          <h1 class="hero-title">Experience Comfortable & Safe Bus Journeys</h1>
+          <p class="hero-subtitle">Book verified AC Sleepers, BharatBenz luxury buses, and fast express seats at the best transparent fares.</p>
+        </div>
+      </div>
+
+      <div class="search-card-wrapper">
+        <div class="search-card">
+          <form id="searchForm" novalidate>
+            <div class="search-grid">
+              
+              <!-- From City -->
+              <div class="form-group from-group">
+                <label for="fromCity" class="form-label">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <circle cx="12" cy="12" r="3" fill="currentColor"></circle>
+                  </svg>
+                  <span>From (Origin)</span>
+                </label>
+                <div class="select-wrapper">
+                  <select id="fromCity" class="form-select" required>
+                    <option value="" disabled selected>Select departure city</option>
+                    <option value="Chennai">Chennai (Madras)</option>
+                    <option value="Coimbatore">Coimbatore (Kovai)</option>
+                    <option value="Madurai">Madurai (Temple City)</option>
+                    <option value="Tiruppur">Tiruppur (Textile City)</option>
+                    <option value="Salem">Salem (Steel City)</option>
+                    <option value="Trichy">Trichy (Tiruchirappalli)</option>
+                    <option value="Erode">Erode</option>
+                  </select>
+                </div>
+                <span class="field-error" id="fromCityError"></span>
+              </div>
+
+              <!-- Swap Button -->
+              <div class="swap-action">
+                <button type="button" id="swapCitiesBtn" class="swap-btn" title="Swap From and To cities" aria-label="Swap cities">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M7 16V4M7 4L3 8M7 4L11 8M17 8V20M17 20L21 16M17 20L13 16"></path>
+                  </svg>
+                </button>
+              </div>
+
+              <!-- To City -->
+              <div class="form-group to-group">
+                <label for="toCity" class="form-label">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  <span>To (Destination)</span>
+                </label>
+                <div class="select-wrapper">
+                  <select id="toCity" class="form-select" required>
+                    <option value="" disabled selected>Select destination city</option>
+                    <option value="Coimbatore">Coimbatore (Kovai)</option>
+                    <option value="Chennai">Chennai (Madras)</option>
+                    <option value="Madurai">Madurai (Temple City)</option>
+                    <option value="Tiruppur">Tiruppur (Textile City)</option>
+                    <option value="Salem">Salem (Steel City)</option>
+                    <option value="Trichy">Trichy (Tiruchirappalli)</option>
+                    <option value="Erode">Erode</option>
+                  </select>
+                </div>
+                <span class="field-error" id="toCityError"></span>
+              </div>
+
+              <!-- Journey Date -->
+              <div class="form-group date-group">
+                <label for="journeyDate" class="form-label">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                  <span>Journey Date</span>
+                </label>
+                <div class="input-wrapper">
+                  <input type="date" id="journeyDate" class="form-input" required>
+                </div>
+                <span class="field-error" id="journeyDateError"></span>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="form-group submit-group">
+                <label class="form-label empty-label">&nbsp;</label>
+                <button type="submit" id="searchBusesBtn" class="btn btn-primary btn-search">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                  <span>Search Buses</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Quick Popular Routes -->
+            <div class="quick-routes">
+              <span class="quick-routes-label">Popular Routes:</span>
+              <div class="quick-tags">
+                <button type="button" class="quick-tag" data-from="Chennai" data-to="Coimbatore">Chennai ➔ Coimbatore</button>
+                <button type="button" class="quick-tag" data-from="Chennai" data-to="Madurai">Chennai ➔ Madurai</button>
+                <button type="button" class="quick-tag" data-from="Coimbatore" data-to="Chennai">Coimbatore ➔ Chennai</button>
+                <button type="button" class="quick-tag" data-from="Salem" data-to="Chennai">Salem ➔ Chennai</button>
+                <button type="button" class="quick-tag" data-from="Tiruppur" data-to="Chennai">Tiruppur ➔ Chennai</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Trust Badges -->
+      <div class="trust-features">
+        <div class="trust-card">
+          <div class="trust-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              <path d="M9 12l2 2 4-4"></path>
+            </svg>
+          </div>
+          <div>
+            <h4>100% Verified Fleet</h4>
+            <p>Sanitized buses with GPS tracking & emergency support</p>
+          </div>
+        </div>
+
+        <div class="trust-card">
+          <div class="trust-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <div>
+            <h4>On-Time Departures</h4>
+            <p>98.4% on-time punctuality rate across all express routes</p>
+          </div>
+        </div>
+
+        <div class="trust-card">
+          <div class="trust-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+              <line x1="6" y1="12" x2="18" y2="12"></line>
+              <line x1="6" y1="16" x2="14" y2="16"></line>
+            </svg>
+          </div>
+          <div>
+            <h4>Instant E-Tickets</h4>
+            <p>Immediate digital boarding pass with interactive SMS preview</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- STEP 2: AVAILABLE BUSES LIST               -->
+    <!-- ========================================== -->
+    <section class="step-view" id="viewStep2">
+      <!-- Search Summary Bar -->
+      <div class="results-header-bar">
+        <div class="route-summary-info">
+          <div class="route-direction">
+            <span id="resFromCity" class="route-city">Chennai</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="arrow-icon">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+            <span id="resToCity" class="route-city">Coimbatore</span>
+          </div>
+          <div class="route-meta">
+            <span id="resJourneyDate" class="route-date">Thu, 24 Oct 2026</span>
+            <span class="dot-separator">•</span>
+            <span id="resBusCount" class="route-count">6 buses available</span>
+          </div>
+        </div>
+        <button type="button" id="modifySearchBtn" class="btn btn-outline btn-sm">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+          </svg>
+          <span>Modify Route</span>
+        </button>
+      </div>
+
+      <!-- Main Results Content (Sidebar Filters + Bus Cards) -->
+      <div class="results-layout">
+        
+        <!-- Filters Sidebar -->
+        <aside class="filters-sidebar">
+          <div class="filters-header">
+            <h3>Filters</h3>
+            <button type="button" id="resetFiltersBtn" class="reset-link">Reset All</button>
+          </div>
+
+          <!-- Bus Type Filter -->
+          <div class="filter-section">
+            <h4 class="filter-title">Bus Type</h4>
+            <div class="filter-options">
+              <label class="checkbox-label">
+                <input type="checkbox" name="busTypeFilter" value="ALL" checked>
+                <span class="custom-check"></span>
+                <span>All Types</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="busTypeFilter" value="AC Sleeper">
+                <span class="custom-check"></span>
+                <span>AC Sleeper (2+1)</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="busTypeFilter" value="AC Seater">
+                <span class="custom-check"></span>
+                <span>AC Seater (2+2)</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="busTypeFilter" value="Non-AC Sleeper">
+                <span class="custom-check"></span>
+                <span>Non-AC Sleeper</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="busTypeFilter" value="Super Luxury">
+                <span class="custom-check"></span>
+                <span>BharatBenz Multi-Axle</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Price Range Filter -->
+          <div class="filter-section">
+            <div class="filter-title-row">
+              <h4 class="filter-title">Max Price</h4>
+              <span id="priceRangeDisplay" class="filter-val-badge">₹1500</span>
+            </div>
+            <input type="range" id="priceRangeSlider" min="500" max="1500" step="50" value="1500" class="range-slider">
+            <div class="slider-bounds">
+              <span>₹500</span>
+              <span>₹1,500</span>
+            </div>
+          </div>
+
+          <!-- Sort Filter -->
+          <div class="filter-section">
+            <h4 class="filter-title">Sort By</h4>
+            <select id="sortBusesSelect" class="form-select select-sm">
+              <option value="departure_asc">Departure: Earliest First</option>
+              <option value="departure_desc">Departure: Latest First</option>
+              <option value="price_asc">Price: Lowest First</option>
+              <option value="price_desc">Price: Highest First</option>
+              <option value="rating_desc">Highest Customer Rating</option>
+            </select>
+          </div>
+
+          <!-- Departure Time Chips -->
+          <div class="filter-section">
+            <h4 class="filter-title">Departure Time</h4>
+            <div class="time-chips">
+              <button type="button" class="time-chip" data-time="morning">
+                <span>🌅</span> Morning (6AM-12PM)
+              </button>
+              <button type="button" class="time-chip" data-time="afternoon">
+                <span>☀️</span> Afternoon (12PM-6PM)
+              </button>
+              <button type="button" class="time-chip" data-time="evening">
+                <span>🌆</span> Evening (6PM-11PM)
+              </button>
+              <button type="button" class="time-chip" data-time="night">
+                <span>🌙</span> Night (11PM-6AM)
+              </button>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Bus Cards Container -->
+        <div class="bus-cards-container" id="busesList">
+          <!-- Dynamically generated bus cards -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- STEP 3: SEAT SELECTION                     -->
+    <!-- ========================================== -->
+    <section class="step-view" id="viewStep3">
+      <!-- Bus Mini Bar -->
+      <div class="bus-mini-summary" id="selectedBusMiniBanner">
+        <!-- Rendered via JS -->
+      </div>
+
+      <div class="seat-selection-layout">
+        
+        <!-- Left: Bus Interior & Seat Map -->
+        <div class="bus-coach-card">
+          <div class="coach-card-header">
+            <div class="deck-toggle-group">
+              <span class="coach-title">Select Desired Seats</span>
+              <div class="deck-tabs">
+                <button type="button" class="deck-tab active" id="lowerDeckTabBtn">Lower Deck</button>
+                <button type="button" class="deck-tab" id="upperDeckTabBtn">Upper Deck</button>
+              </div>
+            </div>
+
+            <!-- Seat Legend -->
+            <div class="seat-legend">
+              <div class="legend-item">
+                <span class="seat-sample seat-available"></span>
+                <span>Available</span>
+              </div>
+              <div class="legend-item">
+                <span class="seat-sample seat-selected"></span>
+                <span>Selected</span>
+              </div>
+              <div class="legend-item">
+                <span class="seat-sample seat-booked"></span>
+                <span>Booked</span>
+              </div>
+              <div class="legend-item">
+                <span class="seat-sample seat-ladies"></span>
+                <span>Ladies Only</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- The Bus Graphic Canvas -->
+          <div class="bus-physical-chassis">
+            <div class="bus-front-cabin">
+              <span class="front-label">FRONT</span>
+              <div class="driver-wheel" title="Driver's Steering Wheel">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <circle cx="12" cy="12" r="2"></circle>
+                  <line x1="12" y1="2" x2="12" y2="10"></line>
+                  <line x1="12" y1="14" x2="12" y2="22"></line>
+                  <line x1="2" y1="12" x2="10" y2="12"></line>
+                  <line x1="14" y1="12" x2="22" y2="12"></line>
+                </svg>
+              </div>
+            </div>
+
+            <div class="bus-seats-chamber">
+              <!-- Lower Deck Layout -->
+              <div class="deck-container active" id="lowerDeckContainer">
+                <div class="deck-indicator-badge">Lower Deck (Seater & Berth)</div>
+                <div class="seats-grid" id="lowerDeckSeatsGrid">
+                  <!-- Rendered via JS -->
+                </div>
+              </div>
+
+              <!-- Upper Deck Layout -->
+              <div class="deck-container" id="upperDeckContainer">
+                <div class="deck-indicator-badge">Upper Deck (Sleepers)</div>
+                <div class="seats-grid" id="upperDeckSeatsGrid">
+                  <!-- Rendered via JS -->
+                </div>
+              </div>
+            </div>
+
+            <div class="bus-rear-bumper">
+              <span>REAR</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Real-time Selection & Fare Summary -->
+        <aside class="seat-summary-card">
+          <h3 class="card-title">Booking Summary</h3>
+          
+          <div class="summary-section">
+            <span class="summary-label">Selected Seats:</span>
+            <div class="selected-seats-pills" id="selectedSeatsPills">
+              <span class="no-seats-text">No seats selected yet. Click any available seat on the coach.</span>
+            </div>
+          </div>
+
+          <div class="summary-divider"></div>
+
+          <div class="fare-calculation">
+            <div class="fare-row">
+              <span class="fare-label">Base Fare (<span id="seatCountText">0 seats</span>):</span>
+              <span class="fare-value" id="baseFareAmount">₹0</span>
+            </div>
+            <div class="fare-row">
+              <span class="fare-label">GST & Toll Charges (5%):</span>
+              <span class="fare-value" id="taxAmount">₹0</span>
+            </div>
+            <div class="fare-row total-row">
+              <span class="fare-label">Total Ticket Price:</span>
+              <span class="fare-value total-price" id="totalFareAmount">₹0</span>
+            </div>
+          </div>
+
+          <div class="summary-actions">
+            <button type="button" id="proceedToPassengerBtn" class="btn btn-primary btn-block" disabled>
+              <span>Proceed to Passenger Details</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+            <button type="button" id="backToBusesBtn" class="btn btn-ghost btn-block">
+              ← Choose Another Bus
+            </button>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- STEP 4: PASSENGER DETAILS FORM             -->
+    <!-- ========================================== -->
+    <section class="step-view" id="viewStep4">
+      <div class="passenger-form-layout">
+        
+        <div class="passenger-main-column">
+          <div class="section-heading-card">
+            <h2>Passenger & Contact Information</h2>
+            <p>Please enter valid details for all passengers. Masked credentials ensure your data privacy.</p>
+          </div>
+
+          <form id="passengerDetailsForm" novalidate>
+            <!-- Dynamic Passenger Cards container -->
+            <div id="dynamicPassengerCards" class="dynamic-passenger-cards">
+              <!-- Dynamically populated according to seats selected -->
+            </div>
+
+            <!-- Primary Contact & Aadhaar Card -->
+            <div class="contact-identity-card">
+              <div class="card-subhead">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+                <h3>Primary Contact & Verification</h3>
+              </div>
+              <p class="card-caption">Your ticket confirmation & simulated SMS preview will be sent here.</p>
+
+              <div class="contact-form-grid">
+                <!-- Phone Number -->
+                <div class="form-group">
+                  <label for="contactPhone" class="form-label">
+                    <span>Indian Mobile Number</span>
+                    <span class="required-star">*</span>
+                  </label>
+                  <div class="input-phone-prefix">
+                    <span class="prefix-box">+91</span>
+                    <input type="tel" id="contactPhone" class="form-input" placeholder="98765 43210" maxlength="10" required>
+                  </div>
+                  <span class="field-error" id="contactPhoneError"></span>
+                  <span class="field-hint">10-digit number starting with 6, 7, 8, or 9</span>
+                </div>
+
+                <!-- Email ID -->
+                <div class="form-group">
+                  <label for="contactEmail" class="form-label">
+                    <span>Email Address</span>
+                    <span class="required-star">*</span>
+                  </label>
+                  <input type="email" id="contactEmail" class="form-input" placeholder="name@example.com" required>
+                  <span class="field-error" id="contactEmailError"></span>
+                  <span class="field-hint">E-ticket PDF will be routed to this address</span>
+                </div>
+
+                <!-- Aadhaar Card Number -->
+                <div class="form-group aadhaar-group">
+                  <label for="contactAadhaar" class="form-label">
+                    <span>12-Digit Aadhaar Number (Govt ID)</span>
+                    <span class="required-star">*</span>
+                  </label>
+                  <div class="aadhaar-input-wrap">
+                    <input type="text" id="contactAadhaar" class="form-input" placeholder="XXXX XXXX 1234" maxlength="14" required>
+                    <svg class="aadhaar-shield-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                  </div>
+                  <span class="field-error" id="contactAadhaarError"></span>
+                  <span class="privacy-note">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                    Aadhaar digits are masked during display (e.g., XXXX-XXXX-1234) and never stored unencrypted.
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="passenger-form-actions">
+              <button type="button" id="backToSeatsBtn" class="btn btn-outline">
+                ← Back to Seat Layout
+              </button>
+              <button type="submit" id="submitPassengersBtn" class="btn btn-primary">
+                <span>Continue to Review & Confirm</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Sidebar Trip Info -->
+        <aside class="passenger-sidebar-summary" id="passengerTripSummary">
+          <!-- Rendered via JS -->
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- STEP 5: REVIEW AND CONFIRM                 -->
+    <!-- ========================================== -->
+    <section class="step-view" id="viewStep5">
+      <div class="review-wrapper">
+        <div class="section-heading-card">
+          <h2>Review Your Booking Details</h2>
+          <p>Please double check journey timings, passenger names, and seats before final confirmation.</p>
+        </div>
+
+        <div class="review-grid">
+          
+          <!-- Left: Detailed Summary Cards -->
+          <div class="review-cards-list">
+            
+            <!-- Bus & Journey Card -->
+            <div class="review-card">
+              <div class="review-card-header">
+                <div class="header-icon blue">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="15" rx="3"></rect>
+                    <path d="M3 10h18"></path>
+                    <circle cx="7" cy="15" r="1.5" fill="currentColor"></circle>
+                    <circle cx="17" cy="15" r="1.5" fill="currentColor"></circle>
+                  </svg>
+                </div>
+                <div>
+                  <h3 id="revBusName">KPN Travels</h3>
+                  <span id="revBusType" class="bus-type-tag">AC Sleeper (2+1)</span>
+                </div>
+              </div>
+
+              <div class="review-timeline">
+                <div class="timeline-point">
+                  <div class="timeline-time" id="revDepTime">21:30</div>
+                  <div class="timeline-city" id="revFromCity">Chennai</div>
+                  <div class="timeline-station" id="revBoardingPoint">Koyambedu Omni Bus Stand</div>
+                </div>
+
+                <div class="timeline-duration">
+                  <span id="revDuration">7h 30m</span>
+                  <div class="duration-line">
+                    <span class="route-line"></span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </div>
+                  <span class="journey-date-pill" id="revJourneyDate">Thu, 24 Oct 2026</span>
+                </div>
+
+                <div class="timeline-point text-right">
+                  <div class="timeline-time" id="revArrTime">05:00</div>
+                  <div class="timeline-city" id="revToCity">Coimbatore</div>
+                  <div class="timeline-station" id="revDroppingPoint">Gandhipuram Central</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Passengers List Review -->
+            <div class="review-card">
+              <div class="review-card-header">
+                <div class="header-icon green">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3>Passenger Roster</h3>
+                  <span class="text-muted" id="revPassengerCount">2 Passengers</span>
+                </div>
+              </div>
+
+              <div class="passengers-review-table-wrapper">
+                <table class="review-table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Passenger Name</th>
+                      <th>Age</th>
+                      <th>Gender</th>
+                      <th>Assigned Seat</th>
+                    </tr>
+                  </thead>
+                  <tbody id="revPassengersTableBody">
+                    <!-- Populated via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Masked Contact & Govt ID Card -->
+            <div class="review-card">
+              <div class="review-card-header">
+                <div class="header-icon purple">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3>Contact & Identification (Masked for Privacy)</h3>
+                  <span class="text-muted">Sensitive personal data is securely shielded</span>
+                </div>
+              </div>
+
+              <div class="masked-info-grid">
+                <div class="masked-item">
+                  <span class="masked-label">Registered Mobile:</span>
+                  <span class="masked-value" id="revMaskedPhone">+91 98••••••10</span>
+                </div>
+                <div class="masked-item">
+                  <span class="masked-label">Email Notification:</span>
+                  <span class="masked-value" id="revMaskedEmail">k••••••e@example.com</span>
+                </div>
+                <div class="masked-item">
+                  <span class="masked-label">Aadhaar Card (Govt ID):</span>
+                  <span class="masked-value aadhaar-masked" id="revMaskedAadhaar">XXXX-XXXX-1234</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right: Price Breakdown & Action Card -->
+          <div class="review-sidebar">
+            <div class="fare-receipt-card">
+              <h3>Payment Summary</h3>
+              <div class="receipt-rows">
+                <div class="receipt-row">
+                  <span>Selected Seats:</span>
+                  <strong id="revSeatsList">L3, L4</strong>
+                </div>
+                <div class="receipt-row">
+                  <span>Base Ticket Fare:</span>
+                  <span id="revBaseFare">₹1,700</span>
+                </div>
+                <div class="receipt-row">
+                  <span>GST & Infrastructure Cess (5%):</span>
+                  <span id="revTax">₹85</span>
+                </div>
+                <div class="receipt-row discount-row">
+                  <span>Web Booking Discount:</span>
+                  <span class="text-success">- ₹0</span>
+                </div>
+                <div class="receipt-divider"></div>
+                <div class="receipt-row total-row">
+                  <span>Total Payable:</span>
+                  <span class="grand-price" id="revGrandTotal">₹1,785</span>
+                </div>
+              </div>
+
+              <div class="terms-check">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="agreeTermsCheck" checked>
+                  <span class="custom-check"></span>
+                  <span class="terms-text">I accept the standard transport policies, cancellation rules, and terms of service.</span>
+                </label>
+              </div>
+
+              <div class="review-action-buttons">
+                <button type="button" id="confirmBookingBtn" class="btn btn-success btn-block btn-lg">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    <polyline points="9 12 11 14 15 10"></polyline>
+                  </svg>
+                  <span>Confirm & Book Ticket</span>
+                </button>
+                <button type="button" id="editDetailsBtn" class="btn btn-outline btn-block">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                  </svg>
+                  <span>Edit Details</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- STEP 6: CONFIRMATION, TICKET & SMS PREVIEW  -->
+    <!-- ========================================== -->
+    <section class="step-view" id="viewStep6">
+      
+      <!-- Success Celebration Banner -->
+      <div class="success-banner-card">
+        <div class="success-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <div class="success-text">
+          <span class="success-tag">BOOKING COMPLETED</span>
+          <h2>Congratulations! Your Ticket is Confirmed</h2>
+          <p>We've reserved your seats. A printable ticket copy and SMS confirmation preview are ready below.</p>
+        </div>
+        <div class="pnr-showcase">
+          <span class="pnr-title">BOOKING ID / PNR</span>
+          <span class="pnr-code" id="successPnrDisplay">TN-BUS-849204</span>
+        </div>
+      </div>
+
+      <!-- Quick Action Toolbar -->
+      <div class="ticket-action-bar">
+        <button type="button" id="printTicketBtn" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+            <rect x="6" y="14" width="12" height="8"></rect>
+          </svg>
+          <span>Print / Save PDF Ticket</span>
+        </button>
+        <button type="button" id="viewInMyBookingsBtn" class="btn btn-outline">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          <span>View in My Bookings</span>
+        </button>
+        <button type="button" id="bookNewJourneyBtn" class="btn btn-ghost">
+          <span>Book Another Journey →</span>
+        </button>
+      </div>
+
+      <!-- Dual Presentation: Printable E-Ticket (Left) + Phone SMS Preview (Right) -->
+      <div class="confirmation-dual-grid">
+        
+        <!-- Printable Ticket Document -->
+        <div class="printable-ticket-wrapper" id="printableTicketArea">
+          <div class="e-ticket-card">
+            
+            <!-- Ticket Header -->
+            <div class="ticket-header">
+              <div class="ticket-brand">
+                <div class="ticket-logo-mark">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="15" rx="3"></rect>
+                    <path d="M3 10h18"></path>
+                    <circle cx="7" cy="15" r="1.5" fill="currentColor"></circle>
+                    <circle cx="17" cy="15" r="1.5" fill="currentColor"></circle>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="ticket-agency-name">VoyageBus Express</h3>
+                  <span class="ticket-type-label">Official Electronic Boarding Pass</span>
+                </div>
+              </div>
+              <div class="ticket-status-stamp">
+                <span class="stamp-badge">CONFIRMED</span>
+                <span class="ticket-pnr-pill">PNR: <strong id="tktPnr">TN-BUS-849204</strong></span>
+              </div>
+            </div>
+
+            <!-- Route Banner -->
+            <div class="ticket-route-banner">
+              <div class="route-station">
+                <span class="station-code" id="tktFromCode">MAA</span>
+                <span class="station-city" id="tktFromCity">Chennai</span>
+                <span class="station-time" id="tktDepTime">21:30</span>
+                <span class="station-point" id="tktBoarding">Koyambedu Omni Bus Stand</span>
+              </div>
+
+              <div class="route-flight-path">
+                <span class="journey-duration-pill" id="tktDuration">7h 30m</span>
+                <div class="path-visual">
+                  <div class="path-dot"></div>
+                  <div class="path-dash"></div>
+                  <div class="path-bus-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="3" y="4" width="18" height="15" rx="3"></rect>
+                      <path d="M3 10h18"></path>
+                    </svg>
+                  </div>
+                  <div class="path-dash"></div>
+                  <div class="path-dot"></div>
+                </div>
+                <span class="journey-date-tag" id="tktDate">Thu, 24 Oct 2026</span>
+              </div>
+
+              <div class="route-station text-right">
+                <span class="station-code" id="tktToCode">CJB</span>
+                <span class="station-city" id="tktToCity">Coimbatore</span>
+                <span class="station-time" id="tktArrTime">05:00</span>
+                <span class="station-point" id="tktDropping">Gandhipuram Central</span>
+              </div>
+            </div>
+
+            <!-- Perforation Cut Divider -->
+            <div class="ticket-perforation">
+              <div class="cut-hole left"></div>
+              <div class="dashed-line"></div>
+              <div class="cut-hole right"></div>
+            </div>
+
+            <!-- Operator and Bus Specs -->
+            <div class="ticket-spec-grid">
+              <div class="spec-cell">
+                <span class="spec-label">BUS OPERATOR</span>
+                <span class="spec-value" id="tktBusName">KPN Travels</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-label">COACH TYPE</span>
+                <span class="spec-value" id="tktBusType">AC Sleeper (2+1)</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-label">SEATS ALLOTTED</span>
+                <span class="spec-value highlight-seats" id="tktSeats">L3, L4</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-label">REPORTING TIME</span>
+                <span class="spec-value" id="tktReportTime">21:15 (15m before)</span>
+              </div>
+            </div>
+
+            <!-- Passenger Details Table inside Ticket -->
+            <div class="ticket-passengers-section">
+              <h4 class="ticket-subhead">Passenger Manifest</h4>
+              <table class="ticket-manifest-table">
+                <thead>
+                  <tr>
+                    <th>Seat</th>
+                    <th>Passenger Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="tktManifestTableBody">
+                  <!-- Populated via JS -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Masked Identification & Payment Row -->
+            <div class="ticket-bottom-grid">
+              <div class="bottom-cell">
+                <span class="spec-label">PRIMARY PASSENGER AADHAAR</span>
+                <span class="spec-value font-mono" id="tktAadhaarMasked">XXXX-XXXX-1234</span>
+              </div>
+              <div class="bottom-cell">
+                <span class="spec-label">REGISTERED MOBILE</span>
+                <span class="spec-value font-mono" id="tktPhoneMasked">+91 98••••••10</span>
+              </div>
+              <div class="bottom-cell text-right">
+                <span class="spec-label">TOTAL FARE PAID</span>
+                <span class="spec-value font-bold text-success" id="tktTotalPaid">₹1,785</span>
+              </div>
+            </div>
+
+            <!-- Barcode & Terms -->
+            <div class="ticket-footer-bar">
+              <div class="barcode-visual">
+                <div class="mock-barcode"></div>
+                <span class="barcode-number" id="tktBarcodeNum">TN94820491823901</span>
+              </div>
+              <div class="ticket-security-notes">
+                <p>• Valid Government Photo ID (e.g. Aadhaar / Voter ID / Driving License) required during boarding.</p>
+                <p>• Inquiries & 24/7 Helpline: 1800-419-8989 | support@voyagebus.in</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Simulated Mobile Phone SMS Notification Preview -->
+        <div class="sms-preview-card">
+          <div class="sms-card-header">
+            <div class="sms-header-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                <line x1="12" y1="18" x2="12.01" y2="18"></line>
+              </svg>
+              <span>Simulated SMS Preview</span>
+            </div>
+            <span class="sms-badge">Live Interactive</span>
+          </div>
+
+          <p class="sms-explainer">
+            This preview simulates the instantaneous SMS delivery dispatched to the passenger's registered mobile number upon confirmation.
+          </p>
+
+          <!-- Smartphone Mockup Device -->
+          <div class="phone-mockup">
+            <div class="phone-speaker"></div>
+            <div class="phone-screen">
+              
+              <!-- Phone Status Bar -->
+              <div class="phone-status-bar">
+                <span class="phone-time" id="phoneClock">19:30</span>
+                <div class="phone-status-icons">
+                  <span>5G</span>
+                  <span>📶</span>
+                  <span>100% 🔋</span>
+                </div>
+              </div>
+
+              <!-- Message App Header -->
+              <div class="message-app-header">
+                <span class="back-arrow">‹</span>
+                <div class="sender-avatar">VB</div>
+                <div class="sender-meta">
+                  <span class="sender-name">VM-VOYAGE</span>
+                  <span class="sender-sub">Direct Bus Alert</span>
+                </div>
+              </div>
+
+              <!-- Chat Message Bubble -->
+              <div class="sms-bubble-wrapper">
+                <div class="sms-timestamp" id="smsTimestamp">Today, 7:30 PM</div>
+                
+                <div class="sms-speech-bubble">
+                  <div class="sms-bubble-header">
+                    <span class="bubble-tag">Booking Confirmed!</span>
+                  </div>
+                  <p id="smsMessageBody" class="sms-bubble-text">
+                    Dear Passenger, your ticket is CONFIRMED! 
+                    PNR: TN-BUS-849204.
+                    Bus: KPN Travels (AC Sleeper).
+                    Route: Chennai to Coimbatore.
+                    Date: 24 Oct 2026, 21:30.
+                    Seats: L3, L4.
+                    Total: Rs.1,785.
+                    Have a safe journey! Track bus at: voyagebus.in/track
+                  </p>
+                  <div class="sms-bubble-footer">
+                    <span>Delivered to <strong id="smsTargetPhone">+91 98••••••10</strong></span>
+                    <span class="check-double">✓✓</span>
+                  </div>
+                </div>
+
+                <div class="sms-disclaimer">
+                  ℹ️ This is a dynamic frontend demonstration. No actual mobile SMS is dispatched.
+                </div>
+              </div>
+
+            </div>
+            <div class="phone-home-indicator"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- VIEW: MY BOOKINGS SECTION                  -->
+    <!-- ========================================== -->
+    <section class="step-view" id="viewMyBookings">
+      <div class="my-bookings-container">
+        <div class="section-heading-card">
+          <div class="heading-row">
+            <div>
+              <h2>My Journey Bookings</h2>
+              <p>Review current active reservations, download e-tickets, or manage journeys.</p>
+            </div>
+            <button type="button" id="myBookingsBackBtn" class="btn btn-outline">
+              ← Back to Search
+            </button>
+          </div>
+        </div>
+
+        <div class="bookings-list" id="bookingsListContainer">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Quick Safety / Amenities Modal -->
+  <div class="modal-overlay" id="safetyModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>VoyageBus Safety Standards</h3>
+        <button type="button" class="close-modal-btn" id="closeSafetyModalBtn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="safety-grid">
+          <div class="safety-item">
+            <span class="safety-icon">🛡️</span>
+            <div>
+              <h4>Real-time GPS Tracking</h4>
+              <p>Every vehicle is fitted with live telemetry accessible via your ticket link.</p>
+            </div>
+          </div>
+          <div class="safety-item">
+            <span class="safety-icon">👩‍🦰</span>
+            <div>
+              <h4>Dedicated Ladies Seating</h4>
+              <p>Adjacent seats reserved strictly for female passengers when booked.</p>
+            </div>
+          </div>
+          <div class="safety-item">
+            <span class="safety-icon">🧯</span>
+            <div>
+              <h4>Emergency SOS & First Aid</h4>
+              <p>Dual fire extinguishers, emergency exit hammers, and certified emergency crew.</p>
+            </div>
+          </div>
+          <div class="safety-item">
+            <span class="safety-icon">🧹</span>
+            <div>
+              <h4>Deep Sanitization</h4>
+              <p>Cleaned, disinfected coach interiors and freshly washed bed linen for sleeper berths.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="gotItSafetyBtn">Got It</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <span class="logo-primary">Voyage</span><span class="logo-accent">Bus</span>
+        </div>
+        <p class="footer-desc">Tamil Nadu's premier bus ticketing portal. Clean, responsive, and seamless travel booking interface.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Top Routes</h4>
+        <ul class="footer-links">
+          <li>Chennai to Coimbatore Bus</li>
+          <li>Chennai to Madurai Sleeper</li>
+          <li>Salem to Chennai Express</li>
+          <li>Tiruppur to Chennai Superfast</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Popular Operators</h4>
+        <ul class="footer-links">
+          <li>KPN Travels</li>
+          <li>SRS Travels</li>
+          <li>Parveen Travels</li>
+          <li>City Star Express</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support & Privacy</h4>
+        <p class="text-sm">Toll-free 24/7 Helpline: <strong>1800-419-8989</strong></p>
+        <p class="text-xs text-muted">All sensitive credentials (Aadhaar & Contact numbers) are safely masked. Educational frontend demo project.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 VoyageBus Systems Inc. Designed with modern HTML5, CSS3, and Vanilla JavaScript.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
